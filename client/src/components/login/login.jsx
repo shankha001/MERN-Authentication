@@ -6,6 +6,7 @@ import { TextField, Button } from '@material-ui/core';
 function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [wrongPassword, setWrongPassword] = useState('');
 
   const onEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,6 +27,9 @@ function Login({ history }) {
     login(user).then((res) => {
       if (res) {
         history.push('/profile');
+      } else {
+        console.log('User Not Found or Wrong Password');
+        setWrongPassword('User Not Found or Wrong Password');
       }
     });
   };
@@ -71,6 +75,8 @@ function Login({ history }) {
             >
               Login
             </Button>
+
+            {wrongPassword}
           </form>
         </div>
       </div>

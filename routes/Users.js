@@ -65,7 +65,7 @@ users.post('/login', (req, res) => {
           });
           res.send(token);
         } else {
-          res.json({ error: 'Password Mismatch' });
+          res.json({ error: 'User not found!' });
         }
       } else {
         res.json({ error: 'User not found!' });

@@ -7,6 +7,7 @@ function Register({ history }) {
   const [last_name, setlast_name] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userExist, setUserExist] = useState('');
 
   const onFnameChange = (e) => {
     setfirst_name(e.target.value);
@@ -32,7 +33,12 @@ function Register({ history }) {
     };
 
     register(user).then((res) => {
-      history.push('/login');
+      if (res) {
+        history.push('/login');
+      } else {
+        console.log('User Already Exists');
+        setUserExist('User Already Exist');
+      }
     });
   };
 
@@ -101,6 +107,8 @@ function Register({ history }) {
             >
               Register
             </Button>
+
+            {userExist}
           </form>
         </div>
       </div>
