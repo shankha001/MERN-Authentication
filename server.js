@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -10,7 +12,11 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Local DataBase
 const mongoURI = 'mongodb://localhost:27017/reactauthDB';
+
+// MongoAtlas Datbase
+// const mongoURI = process.env.MONGO_URI;
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })

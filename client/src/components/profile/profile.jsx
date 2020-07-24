@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
+import './profile.styles.scss';
 
 function Profile() {
   const [first_name, setfirst_name] = useState('');
@@ -17,32 +18,30 @@ function Profile() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="profile-container">
       <div className="">
-        <div className="">
-          {email ? (
-            <h1 className="">PROFILE</h1>
-          ) : (
-            <h2>Please Login/Register to view this page</h2>
-          )}
-        </div>
-        <table className="">
-          <tbody>
-            <tr>
-              <td>{first_name ? 'Fist Name' : null}</td>
-              <td>{first_name}</td>
-            </tr>
-            <tr>
-              <td>{last_name ? 'Last Name' : null}</td>
-              <td>{last_name}</td>
-            </tr>
-            <tr>
-              <td>{email ? 'Email' : null}</td>
-              <td>{email}</td>
-            </tr>
-          </tbody>
-        </table>
+        {email ? (
+          <h1 className="">PROFILE</h1>
+        ) : (
+          <h2>Please Login/Register to view this page</h2>
+        )}
       </div>
+      <table className="">
+        <tbody>
+          <tr>
+            <td>{first_name ? 'Fist Name:' : null}</td>
+            <td>{first_name}</td>
+          </tr>
+          <tr>
+            <td>{last_name ? 'Last Name:' : null}</td>
+            <td>{last_name}</td>
+          </tr>
+          <tr>
+            <td>{email ? 'Email:' : null}</td>
+            <td>{email}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
