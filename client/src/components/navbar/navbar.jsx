@@ -1,8 +1,29 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
+
+import './navbar.styles.scss';
 
 import { Link, withRouter } from 'react-router-dom';
 
 function Navbar({ history }) {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+  }));
+  const classes = useStyles();
   const logOut = (e) => {
     e.preventDefault();
     localStorage.removeItem('usertoken');
@@ -11,48 +32,53 @@ function Navbar({ history }) {
   };
 
   const loginRegLink = (
-    <ul className="">
-      <li className="">
-        <Link to="/login" className="">
-          Login
-        </Link>
-      </li>
-      <li className="">
-        <Link to="/register" className="">
-          Register
-        </Link>
-      </li>
-    </ul>
+    <React.Fragment>
+      <Link to="/login" className="nav-link">
+        <Button color="inherit">Login</Button>
+      </Link>
+      <Link to="/register" className="nav-link">
+        <Button color="inherit">Register</Button>
+      </Link>
+    </React.Fragment>
   );
 
   const userLink = (
-    <ul className="">
-      <li className="">
-        <Link to="/profile" className="">
-          User
-        </Link>
-      </li>
-      <li className="">
-        <Link onClick={logOut} className="">
-          Logout
-        </Link>
-      </li>
-    </ul>
+    <React.Fragment>
+      <Link to="/profile" className="nav-link">
+        <Button color="inherit">User</Button>
+      </Link>
+      <Link to="" onClick={logOut} className="nav-link">
+        <Button color="inherit">Logout</Button>
+      </Link>
+    </React.Fragment>
   );
 
   return (
-    <nav className="">
-      <div className="" id="navbarsExample10">
-        <ul className="">
-          <li className="">
-            <Link to="/" className="">
-              Home
+    <React.Fragment>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <AcUnitIcon />
+            </IconButton>
+
+            <Typography variant="h6" className={classes.title}>
+              React Authentication
+            </Typography>
+
+            <Link to="/" className="nav-link">
+              <Button color="inherit">Home</Button>
             </Link>
-          </li>
-        </ul>
-        {localStorage.usertoken ? userLink : loginRegLink}
+            {localStorage.usertoken ? userLink : loginRegLink}
+          </Toolbar>
+        </AppBar>
       </div>
-    </nav>
+    </React.Fragment>
   );
 }
 

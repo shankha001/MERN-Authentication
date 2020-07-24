@@ -1,0 +1,16 @@
+.input-field-login {
+  margin: auto;
+  margin-bottom: 10px;
+
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  display: block;
+  width: 175px;
+  height: 45px;
+  &-container {
+    margin: 20px 0;
+  }
+}

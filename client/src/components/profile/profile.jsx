@@ -8,30 +8,36 @@ function Profile() {
 
   useEffect(() => {
     const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
-    setfirst_name(decoded.first_name);
-    setlast_name(decoded.last_name);
-    setEmail(decoded.email);
+    if (token) {
+      const decoded = jwt_decode(token);
+      setfirst_name(decoded.first_name);
+      setlast_name(decoded.last_name);
+      setEmail(decoded.email);
+    }
   }, []);
 
   return (
     <div className="container">
       <div className="">
         <div className="">
-          <h1 className="">PROFILE</h1>
+          {email ? (
+            <h1 className="">PROFILE</h1>
+          ) : (
+            <h2>Please Login/Register to view this page</h2>
+          )}
         </div>
         <table className="">
           <tbody>
             <tr>
-              <td>Fist Name</td>
+              <td>{first_name ? 'Fist Name' : null}</td>
               <td>{first_name}</td>
             </tr>
             <tr>
-              <td>Last Name</td>
+              <td>{last_name ? 'Last Name' : null}</td>
               <td>{last_name}</td>
             </tr>
             <tr>
-              <td>Email</td>
+              <td>{email ? 'Email' : null}</td>
               <td>{email}</td>
             </tr>
           </tbody>

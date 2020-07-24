@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const users = express.Router();
 const cors = require('cors');
@@ -7,9 +8,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 users.use(cors());
 
-process.env.SECRET_KEY = 'This is my secret';
-
-//------ Register Route ----
+// ----- Register Route ----
 
 users.post('/register', (req, res) => {
   const today = new Date();
@@ -30,7 +29,7 @@ users.post('/register', (req, res) => {
           userData.password = hash;
           User.create(userData)
             .then((user) => {
-              res.json({ status: user.email + ' Registered!' });
+              res.json({ status: 'Registered!' });
             })
             .catch((err) => {
               res.send('error: ' + err);
@@ -45,7 +44,7 @@ users.post('/register', (req, res) => {
     });
 });
 
-// ---- Login Route --- //
+// ---- Login Route ---
 
 users.post('/login', (req, res) => {
   User.findOne({
@@ -65,7 +64,7 @@ users.post('/login', (req, res) => {
           });
           res.send(token);
         } else {
-          res.json({ error: 'User not found!' });
+          res.json({ error: 'Password Mismatch' });
         }
       } else {
         res.json({ error: 'User not found!' });

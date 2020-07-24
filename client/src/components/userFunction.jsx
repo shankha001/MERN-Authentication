@@ -9,12 +9,7 @@ export const register = (newUser) => {
       password: newUser.password,
     })
     .then((response) => {
-      console.log(response);
-      if (response.data.error === 'User already exists') {
-        return false;
-      } else {
-        console.log('Registered');
-      }
+      return response.data.status;
     });
 };
 
@@ -25,7 +20,7 @@ export const login = (user) => {
       password: user.password,
     })
     .then((response) => {
-      if (response.data.error === 'User not found!') {
+      if (response.data.error) {
         return false;
       } else {
         localStorage.setItem('usertoken', response.data);

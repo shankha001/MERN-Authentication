@@ -1,11 +1,11 @@
 import React from 'react';
+import './landing.styles.scss';
 
 function Landing() {
   return (
-    <div className="container">
-      <div className="">
-        <div className="">WELCOME</div>
-      </div>
+    <div className="title-container">
+      <h1>HOMEPAGE</h1>
+      <h3>This is MERN Stack Authentication BoilerPlate</h3>
     </div>
   );
 }

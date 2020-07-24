@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { register } from '../userFunction';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
+
+import './register.styles.scss';
 
 function Register({ history }) {
   const [first_name, setfirst_name] = useState('');
@@ -33,24 +37,41 @@ function Register({ history }) {
     };
 
     register(user).then((res) => {
-      if (res) {
+      // console.log(res);
+      if (res === 'Registered!') {
         history.push('/login');
       } else {
-        console.log('User Already Exists');
-        setUserExist('User Already Exist');
+        setUserExist('User Already Exists');
       }
     });
   };
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      textAlign: 'center',
+      justifyContent: 'center',
+      height: '90vh',
+
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      '& > *': {
+        margin: theme.spacing(1),
+        width: theme.spacing(40),
+        height: theme.spacing(60),
+      },
+    },
+  }));
+  const classes = useStyles();
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="">
+    <React.Fragment>
+      <div className={classes.root}>
+        <Paper elevation={3}>
           <form noValidate onSubmit={onSubmit}>
             <h1 className="">Register</h1>
-            <div className="form-group">
+            <div className="input-field-reg">
               <TextField
-                className="form-control"
                 id="outlined-basic"
                 variant="outlined"
                 label="First Name"
@@ -60,7 +81,7 @@ function Register({ history }) {
                 onChange={onFnameChange}
               />
             </div>
-            <div className="form-group">
+            <div className="input-field-reg">
               <TextField
                 id="outlined-basic"
                 label="Last Name"
@@ -72,9 +93,9 @@ function Register({ history }) {
                 onChange={onLnameChange}
               />
             </div>
-            <div className="form-group">
+            <div className="input-field-reg">
               <TextField
-                className="form-control"
+                className=""
                 id="outlined-basic"
                 label="Email"
                 variant="outlined"
@@ -85,9 +106,9 @@ function Register({ history }) {
               />
             </div>
 
-            <div className="form-group">
+            <div className="input-field-reg">
               <TextField
-                className="form-control"
+                className=""
                 id="outlined-password-input"
                 label="Password"
                 type="password"
@@ -98,21 +119,21 @@ function Register({ history }) {
                 onChange={onPasswordChange}
               />
             </div>
-
-            <Button
-              className=""
-              variant="outlined"
-              color="primary"
-              type="submit"
-            >
-              Register
-            </Button>
-
-            {userExist}
+            <div className="btn-container">
+              <Button
+                className="btn"
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Register
+              </Button>
+            </div>
           </form>
-        </div>
+          {userExist}
+        </Paper>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
