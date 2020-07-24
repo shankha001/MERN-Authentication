@@ -1,6 +1,7 @@
 # MERN-Authentication
 
 BoilerPlate of MERN Stack user authentication using REACT as frontend and MONGODB as backend.
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Dependencies
