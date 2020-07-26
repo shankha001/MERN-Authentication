@@ -25,6 +25,8 @@ mongoose
 
 var Users = require('./routes/USers');
 
+app.get('/', (req, res) => res.send('Welcome To Backend Server'));
+
 app.use('/users', Users);
 
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));

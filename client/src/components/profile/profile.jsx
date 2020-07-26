@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import './profile.styles.scss';
 
-function Profile() {
+function Profile({ history }) {
   const [first_name, setfirst_name] = useState('');
   const [last_name, setlast_name] = useState('');
   const [email, setEmail] = useState('');
@@ -14,8 +14,10 @@ function Profile() {
       setfirst_name(decoded.first_name);
       setlast_name(decoded.last_name);
       setEmail(decoded.email);
+    } else {
+      history.push('/login');
     }
-  }, []);
+  }, [history]);
 
   return (
     <div className="profile-container">
