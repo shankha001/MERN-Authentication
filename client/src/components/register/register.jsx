@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { register } from '../userFunction';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,6 +7,13 @@ import { TextField, Button } from '@material-ui/core';
 import './register.styles.scss';
 
 function Register({ history }) {
+  useEffect(() => {
+    const token = localStorage.usertoken;
+    if (token) {
+      history.push('/profile');
+    }
+  }, [history]);
+
   const [first_name, setfirst_name] = useState('');
   const [last_name, setlast_name] = useState('');
   const [email, setEmail] = useState('');

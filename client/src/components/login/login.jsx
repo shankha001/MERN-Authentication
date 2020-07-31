@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { login } from '../userFunction';
 import { withRouter } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
@@ -8,6 +8,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import './login.styles.scss';
 
 function Login({ history }) {
+  useEffect(() => {
+    const token = localStorage.usertoken;
+    if (token) {
+      history.push('/profile');
+    }
+  }, [history]);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [wrongPassword, setWrongPassword] = useState('');
